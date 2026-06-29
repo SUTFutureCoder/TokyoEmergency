@@ -15,11 +15,13 @@ The name is inspired by the track title "Tokyo Emergency" from the *Persona 5* o
 
 ## Read Online
 
-After GitHub Pages is enabled, the site can be published with the included GitHub Actions workflow.
+After GitHub Pages is enabled, the site can be published directly from the `docs/` directory.
 
 Recommended GitHub Pages settings:
 
-- Source: `GitHub Actions`
+- Source: `Deploy from a branch`
+- Branch: `main`
+- Folder: `/docs`
 
 The local web entry point is:
 
@@ -36,9 +38,6 @@ TokyoEmergency/
 ├─ docs/
 │  ├─ index.html
 │  └─ tokyo-travel-japanese.md
-├─ .github/
-│  └─ workflows/
-│     └─ pages.yml
 ├─ LICENSE
 ├─ README.md
 └─ .gitignore
