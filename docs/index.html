@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TokyoEmergency | 东京单人旅行日语高频词汇与句子</title>
+  <meta name="description" content="TokyoEmergency 是面向中文使用者的东京单人旅行日语高频词汇、例句与紧急表达开源手册。">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f4ee;
+      --panel: #fffdf8;
+      --text: #1f2528;
+      --muted: #667074;
+      --line: #d8d3c7;
+      --accent: #ba2d2d;
+      --accent-2: #006d77;
+      --ink: #162023;
+      --shadow: 0 16px 40px rgba(32, 37, 40, 0.12);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "Noto Sans JP", sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent-2);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    header {
+      background: #171d20;
+      color: #fffdf8;
+      border-bottom: 4px solid var(--accent);
+    }
+
+    .hero {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 48px 0 28px;
+    }
+
+    .kicker {
+      margin: 0 0 12px;
+      color: #f0c36a;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 900px;
+      font-size: clamp(2.1rem, 4vw, 4.2rem);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      max-width: 760px;
+      margin: 18px 0 0;
+      color: #dce2e2;
+      font-size: 1.05rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 9px 14px;
+      border: 1px solid rgba(255, 253, 248, 0.28);
+      border-radius: 6px;
+      background: #fffdf8;
+      color: #171d20;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: #fffdf8;
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: 270px minmax(0, 1fr);
+      gap: 24px;
+      width: min(1120px, calc(100% - 32px));
+      margin: 24px auto 48px;
+      align-items: start;
+    }
+
+    nav {
+      position: sticky;
+      top: 16px;
+      padding: 16px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      max-height: calc(100vh - 32px);
+      overflow: auto;
+    }
+
+    nav h2 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+    }
+
+    nav a {
+      display: block;
+      padding: 6px 0;
+      color: var(--ink);
+      font-size: 0.94rem;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(216, 211, 199, 0.55);
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    main {
+      min-width: 0;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 14px 16px;
+      background: #ece8dc;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .toolbar input {
+      width: 100%;
+      min-height: 40px;
+      border: 1px solid #c6c0b4;
+      border-radius: 6px;
+      padding: 8px 11px;
+      background: #fffdf8;
+      color: var(--text);
+      font: inherit;
+    }
+
+    .content {
+      padding: 18px 22px 36px;
+    }
+
+    .content h1,
+    .content h2,
+    .content h3 {
+      scroll-margin-top: 18px;
+      letter-spacing: 0;
+      color: var(--ink);
+    }
+
+    .content h1 {
+      font-size: 1.9rem;
+      margin: 0 0 18px;
+    }
+
+    .content h2 {
+      margin: 34px 0 12px;
+      padding-top: 10px;
+      border-top: 2px solid var(--line);
+      font-size: 1.45rem;
+    }
+
+    .content h3 {
+      margin: 24px 0 10px;
+      font-size: 1.1rem;
+    }
+
+    .content blockquote {
+      margin: 0 0 18px;
+      padding: 12px 14px;
+      border-left: 4px solid var(--accent);
+      background: #f4efe4;
+      color: #3f474a;
+    }
+
+    .content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 24px;
+      font-size: 0.95rem;
+    }
+
+    .content th,
+    .content td {
+      border: 1px solid var(--line);
+      padding: 8px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .content th {
+      background: #eee6d7;
+      color: #202528;
+      font-weight: 800;
+    }
+
+    .content tr:nth-child(even) td {
+      background: #fbf7ef;
+    }
+
+    .content code {
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: #eee6d7;
+      font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    .content pre {
+      overflow: auto;
+      padding: 12px;
+      border-radius: 6px;
+      background: #171d20;
+      color: #fffdf8;
+    }
+
+    .content pre code {
+      padding: 0;
+      background: transparent;
+      color: inherit;
+    }
+
+    .content hr {
+      border: 0;
+      border-top: 1px solid var(--line);
+      margin: 30px 0;
+    }
+
+    .notice {
+      width: min(1120px, calc(100% - 32px));
+      margin: 18px auto 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        padding-top: 34px;
+      }
+
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        position: static;
+        max-height: 260px;
+      }
+
+      .content {
+        padding: 14px 12px 28px;
+      }
+
+      .content table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <section class="hero">
+      <p class="kicker">Open-source Tokyo travel phrasebook</p>
+      <h1>TokyoEmergency</h1>
+      <p class="subtitle">面向中文使用者的东京单人旅行日语高频词汇、例句与紧急表达手册。例句包含日语、读音和中文，适合出发前快速背诵，也适合旅途中搜索救场。</p>
+      <div class="actions">
+        <a class="button" href="#content">开始阅读</a>
+        <a class="button secondary" href="tokyo-travel-japanese.md">Markdown 原文</a>
+      </div>
+    </section>
+  </header>
+
+  <p class="notice">名称灵感来自《Persona 5》OST 曲目标题 “Tokyo Emergency”。本项目与 Atlus、Sega、Persona 或相关权利方无关联。</p>
+
+  <div class="shell">
+    <nav aria-label="目录">
+      <h2>目录</h2>
+      <div id="toc"></div>
+    </nav>
+
+    <main>
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="搜索：例如 Suica、トイレ、迷路、结账、过敏" aria-label="搜索内容">
+      </div>
+      <article id="content" class="content">
+        <p>正在加载 Markdown 内容...</p>
+      </article>
+    </main>
+  </div>
+
+  <script>
+    const content = document.querySelector("#content");
+    const toc = document.querySelector("#toc");
+    const search = document.querySelector("#search");
+    let originalHtml = "";
+
+    function escapeHtml(value) {
+      return value
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function slugify(text) {
+      return text
+        .trim()
+        .toLowerCase()
+        .replace(/[^\p{L}\p{N}]+/gu, "-")
+        .replace(/^-+|-+$/g, "");
+    }
+
+    function parseInline(text) {
+      return escapeHtml(text)
+        .replace(/`([^`]+)`/g, "<code>$1</code>")
+        .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+    }
+
+    function parseMarkdown(markdown) {
+      const lines = markdown.replace(/\r\n/g, "\n").split("\n");
+      const html = [];
+      let paragraph = [];
+      let table = [];
+      let list = [];
+      let blockquote = [];
+      let code = [];
+      let inCode = false;
+
+      function flushParagraph() {
+        if (paragraph.length) {
+          html.push(`<p>${parseInline(paragraph.join(" "))}</p>`);
+          paragraph = [];
+        }
+      }
+
+      function flushList() {
+        if (list.length) {
+          html.push(`<ul>${list.map(item => `<li>${parseInline(item)}</li>`).join("")}</ul>`);
+          list = [];
+        }
+      }
+
+      function flushBlockquote() {
+        if (blockquote.length) {
+          html.push(`<blockquote>${blockquote.map(line => `<p>${parseInline(line)}</p>`).join("")}</blockquote>`);
+          blockquote = [];
+        }
+      }
+
+      function flushTable() {
+        if (table.length) {
+          const rows = table
+            .filter(row => !/^\|\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?$/.test(row))
+            .map((row, index) => {
+              const cells = row.trim().replace(/^\||\|$/g, "").split("|").map(cell => parseInline(cell.trim()));
+              const tag = index === 0 ? "th" : "td";
+              return `<tr>${cells.map(cell => `<${tag}>${cell}</${tag}>`).join("")}</tr>`;
+            });
+          if (rows.length) {
+            html.push(`<table>${rows.join("")}</table>`);
+          }
+          table = [];
+        }
+      }
+
+      function flushCode() {
+        if (code.length) {
+          html.push(`<pre><code>${escapeHtml(code.join("\n"))}</code></pre>`);
+          code = [];
+        }
+      }
+
+      function flushAll() {
+        flushParagraph();
+        flushList();
+        flushBlockquote();
+        flushTable();
+      }
+
+      for (const line of lines) {
+        if (line.startsWith("```")) {
+          if (inCode) {
+            flushCode();
+            inCode = false;
+          } else {
+            flushAll();
+            inCode = true;
+          }
+          continue;
+        }
+
+        if (inCode) {
+          code.push(line);
+          continue;
+        }
+
+        if (!line.trim()) {
+          flushAll();
+          continue;
+        }
+
+        if (/^---+$/.test(line.trim())) {
+          flushAll();
+          html.push("<hr>");
+          continue;
+        }
+
+        if (line.startsWith("|")) {
+          flushParagraph();
+          flushList();
+          flushBlockquote();
+          table.push(line);
+          continue;
+        }
+
+        if (line.startsWith(">")) {
+          flushParagraph();
+          flushList();
+          flushTable();
+          blockquote.push(line.replace(/^>\s?/, ""));
+          continue;
+        }
+
+        const heading = line.match(/^(#{1,6})\s+(.+)$/);
+        if (heading) {
+          flushAll();
+          const level = heading[1].length;
+          const text = heading[2].trim();
+          const id = slugify(text) || `section-${html.length}`;
+          html.push(`<h${level} id="${id}">${parseInline(text)}</h${level}>`);
+          continue;
+        }
+
+        const bullet = line.match(/^-\s+(.+)$/);
+        if (bullet) {
+          flushParagraph();
+          flushBlockquote();
+          flushTable();
+          list.push(bullet[1]);
+          continue;
+        }
+
+        flushList();
+        flushBlockquote();
+        flushTable();
+        paragraph.push(line.trim());
+      }
+
+      flushAll();
+      flushCode();
+      return html.join("\n");
+    }
+
+    function buildToc() {
+      const headings = [...content.querySelectorAll("h2")];
+      toc.innerHTML = headings
+        .map(heading => `<a href="#${heading.id}">${heading.textContent}</a>`)
+        .join("");
+    }
+
+    function filterContent(query) {
+      const normalized = query.trim().toLowerCase();
+      content.innerHTML = originalHtml;
+      if (!normalized) {
+        buildToc();
+        return;
+      }
+
+      const blocks = [...content.children];
+      for (const block of blocks) {
+        const text = block.textContent.toLowerCase();
+        const keep = text.includes(normalized) || /^H[12]$/.test(block.tagName);
+        block.classList.toggle("hidden", !keep);
+      }
+      buildToc();
+    }
+
+    fetch("tokyo-travel-japanese.md")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        return response.text();
+      })
+      .then(markdown => {
+        originalHtml = parseMarkdown(markdown);
+        content.innerHTML = originalHtml;
+        buildToc();
+      })
+      .catch(error => {
+        content.innerHTML = `<h1>无法加载内容</h1><p>请直接打开 <a href="tokyo-travel-japanese.md">Markdown 原文</a>。错误：${escapeHtml(error.message)}</p>`;
+      });
+
+    search.addEventListener("input", event => filterContent(event.target.value));
+  </script>
+</body>
+</html>
+
