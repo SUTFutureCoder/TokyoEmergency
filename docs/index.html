@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TokyoEmergency | 东京单人旅行日语高频词汇与句子</title>
-  <meta name="description" content="TokyoEmergency 是面向中文使用者的东京单人旅行日语高频词汇、例句与紧急表达开源手册。">
+  <link rel="icon" href="data:,">
+  <title>TokyoEmergency | 东京旅行日语高频词汇与句子</title>
+  <meta name="description" content="TokyoEmergency 是面向中文使用者、配有实用罗马音和中文释义的东京旅行日语高频词汇、例句与紧急表达开源手册，适合不同日语水平的旅行者。">
   <style>
     :root {
       color-scheme: light;
@@ -234,6 +235,56 @@
       background: #fbf7ef;
     }
 
+    .speech-entry {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      min-width: 9rem;
+    }
+
+    .speech-text {
+      min-width: 0;
+    }
+
+    .speak-button {
+      display: inline-flex;
+      flex: 0 0 30px;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      margin: -2px 0;
+      padding: 0;
+      border: 1px solid #aaa394;
+      border-radius: 6px;
+      background: #fffdf8;
+      color: var(--ink);
+      font: inherit;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .speak-button:hover {
+      border-color: var(--accent-2);
+      background: #e8f2f1;
+    }
+
+    .speak-button:focus-visible {
+      outline: 3px solid rgba(0, 109, 119, 0.28);
+      outline-offset: 2px;
+    }
+
+    .speak-button.is-speaking {
+      border-color: var(--accent);
+      background: #f7e5e2;
+    }
+
+    .speak-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.45;
+    }
+
     .content code {
       padding: 2px 5px;
       border-radius: 4px;
@@ -304,7 +355,7 @@
     <section class="hero">
       <p class="kicker">Open-source Tokyo travel phrasebook</p>
       <h1>TokyoEmergency</h1>
-      <p class="subtitle">面向中文使用者的东京单人旅行日语高频词汇、例句与紧急表达手册。例句包含日语、读音和中文，适合出发前快速背诵，也适合旅途中搜索救场。</p>
+      <p class="subtitle">面向中文使用者，配有实用罗马音和中文释义的东京旅行日语高频词汇、例句与紧急表达手册。适合不同日语水平的旅行者出发前练习，也方便旅途中快速检索。</p>
       <div class="actions">
         <a class="button" href="#content">开始阅读</a>
         <a class="button secondary" href="tokyo-travel-japanese.md">Markdown 原文</a>
@@ -334,7 +385,22 @@
     const content = document.querySelector("#content");
     const toc = document.querySelector("#toc");
     const search = document.querySelector("#search");
+    const supportsSpeech = "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
     let originalHtml = "";
+    let availableVoices = [];
+    let activeSpeechButton = null;
+    let activeUtterance = null;
+
+    function refreshVoices() {
+      if (supportsSpeech) {
+        availableVoices = window.speechSynthesis.getVoices();
+      }
+    }
+
+    if (supportsSpeech) {
+      refreshVoices();
+      window.speechSynthesis.addEventListener("voiceschanged", refreshVoices);
+    }
 
     function escapeHtml(value) {
       return value
@@ -502,11 +568,125 @@
         .join("");
     }
 
+    function resetSpeechState(utterance = activeUtterance) {
+      if (utterance !== activeUtterance) {
+        return;
+      }
+
+      if (activeSpeechButton) {
+        activeSpeechButton.classList.remove("is-speaking");
+        activeSpeechButton.setAttribute("aria-label", activeSpeechButton.dataset.defaultLabel);
+        activeSpeechButton.title = activeSpeechButton.dataset.defaultTitle;
+      }
+      activeSpeechButton = null;
+      activeUtterance = null;
+    }
+
+    function stopSpeech() {
+      if (!supportsSpeech) {
+        return;
+      }
+      window.speechSynthesis.cancel();
+      resetSpeechState();
+    }
+
+    function chooseVoice(language) {
+      const normalizedLanguage = language.toLowerCase();
+      const baseLanguage = normalizedLanguage.split("-")[0];
+      return availableVoices.find(voice => voice.lang.toLowerCase() === normalizedLanguage)
+        || availableVoices.find(voice => voice.lang.toLowerCase().startsWith(`${baseLanguage}-`));
+    }
+
+    function speak(text, language, button) {
+      if (!supportsSpeech) {
+        return;
+      }
+
+      if (activeSpeechButton === button) {
+        stopSpeech();
+        return;
+      }
+
+      stopSpeech();
+      const utterance = new SpeechSynthesisUtterance(text.replace(/〇〇/g, "まるまる"));
+      const voice = chooseVoice(language);
+      utterance.lang = language;
+      utterance.rate = 0.9;
+      if (voice) {
+        utterance.voice = voice;
+      }
+
+      activeSpeechButton = button;
+      activeUtterance = utterance;
+      button.classList.add("is-speaking");
+      button.setAttribute("aria-label", `停止朗读：${text}`);
+      button.title = "停止朗读";
+      utterance.addEventListener("end", () => resetSpeechState(utterance));
+      utterance.addEventListener("error", () => resetSpeechState(utterance));
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function addSpeechButtons() {
+      const speechColumns = new Map([
+        ["日语", "ja-JP"],
+        ["简化说法", "ja-JP"]
+      ]);
+
+      for (const table of content.querySelectorAll("table")) {
+        const rows = [...table.querySelectorAll("tr")];
+        const headers = rows[0] ? [...rows[0].querySelectorAll("th")] : [];
+        const columnIndex = headers.findIndex(header => speechColumns.has(header.textContent.trim()));
+        if (columnIndex === -1) {
+          continue;
+        }
+
+        const language = speechColumns.get(headers[columnIndex].textContent.trim());
+        for (const row of rows.slice(1)) {
+          const cell = row.querySelectorAll("td")[columnIndex];
+          if (!cell) {
+            continue;
+          }
+
+          const text = cell.textContent.trim();
+          const entry = document.createElement("div");
+          const textWrapper = document.createElement("span");
+          const button = document.createElement("button");
+          entry.className = "speech-entry";
+          textWrapper.className = "speech-text";
+          while (cell.firstChild) {
+            textWrapper.appendChild(cell.firstChild);
+          }
+          button.className = "speak-button";
+          button.type = "button";
+          button.textContent = "🔊";
+          button.dataset.defaultLabel = `朗读日语：${text}`;
+          button.dataset.defaultTitle = "朗读日语";
+          button.setAttribute("aria-label", button.dataset.defaultLabel);
+          button.title = button.dataset.defaultTitle;
+          if (supportsSpeech) {
+            button.addEventListener("click", () => speak(text, language, button));
+          } else {
+            button.disabled = true;
+            button.setAttribute("aria-label", "当前浏览器不支持语音合成");
+            button.title = "当前浏览器不支持语音合成";
+          }
+          entry.append(textWrapper, button);
+          cell.appendChild(entry);
+        }
+      }
+    }
+
+    function renderContent() {
+      addSpeechButtons();
+      buildToc();
+    }
+
     function filterContent(query) {
       const normalized = query.trim().toLowerCase();
+      stopSpeech();
       content.innerHTML = originalHtml;
       if (!normalized) {
-        buildToc();
+        renderContent();
         return;
       }
 
@@ -516,7 +696,7 @@
         const keep = text.includes(normalized) || /^H[12]$/.test(block.tagName);
         block.classList.toggle("hidden", !keep);
       }
-      buildToc();
+      renderContent();
     }
 
     fetch("tokyo-travel-japanese.md")
@@ -529,13 +709,14 @@
       .then(markdown => {
         originalHtml = parseMarkdown(markdown);
         content.innerHTML = originalHtml;
-        buildToc();
+        renderContent();
       })
       .catch(error => {
         content.innerHTML = `<h1>无法加载内容</h1><p>请直接打开 <a href="tokyo-travel-japanese.md">Markdown 原文</a>。错误：${escapeHtml(error.message)}</p>`;
       });
 
     search.addEventListener("input", event => filterContent(event.target.value));
+    window.addEventListener("pagehide", stopSpeech);
   </script>
 </body>
 </html>

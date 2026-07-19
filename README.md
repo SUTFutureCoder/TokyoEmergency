@@ -1,6 +1,6 @@
 # TokyoEmergency
 
-TokyoEmergency is an open-source Japanese phrasebook for solo travelers in Tokyo, written for Chinese speakers who already know some Japanese but want fast, high-frequency travel responses.
+TokyoEmergency is an open-source Japanese phrasebook for Chinese-speaking travelers in Tokyo. It pairs high-frequency Japanese expressions with practical romanization and Chinese translations, so it can be used at any Japanese proficiency level.
 
 The name is inspired by the track title "Tokyo Emergency" from the *Persona 5* original soundtrack. This project is not affiliated with Atlus, Sega, Persona, or any soundtrack rights holder.
 
@@ -10,10 +10,13 @@ The name is inspired by the track title "Tokyo Emergency" from the *Persona 5* o
 - Emergency and problem-solving phrases
 - Tokyo transit, restaurant, hotel, shopping, medical, and police scenarios
 - Japanese examples with romanized pronunciation and Chinese meaning
+- Browser/operating-system TTS controls for every Japanese entry in the web version
 - A static web version suitable for GitHub Pages
 - A Markdown source version for reading, editing, and reuse
 
 ## Read Online
+
+GitHub Pages: [https://sutfuturecoder.github.io/TokyoEmergency/](https://sutfuturecoder.github.io/TokyoEmergency/)
 
 After GitHub Pages is enabled, the site can be published directly from the `docs/` directory.
 
